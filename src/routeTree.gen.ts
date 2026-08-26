@@ -13,7 +13,9 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as SegurancaRouteImport } from './routes/seguranca'
 import { Route as SobreRouteImport } from './routes/sobre'
+import { Route as TrilhasRouteImport } from './routes/trilhas'
 import { Route as AtividadesIndexRouteImport } from './routes/atividades.index'
+import { Route as AtividadesSlugRouteImport } from './routes/atividades.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -35,9 +37,19 @@ const SobreRoute = SobreRouteImport.update({
   path: '/sobre',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrilhasRoute = TrilhasRouteImport.update({
+  id: '/trilhas',
+  path: '/trilhas',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AtividadesIndexRoute = AtividadesIndexRouteImport.update({
   id: '/atividades/',
   path: '/atividades/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtividadesSlugRoute = AtividadesSlugRouteImport.update({
+  id: '/atividades/$slug',
+  path: '/atividades/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -46,6 +58,8 @@ export interface FileRoutesByFullPath {
   '/contato': typeof ContatoRoute
   '/seguranca': typeof SegurancaRoute
   '/sobre': typeof SobreRoute
+  '/trilhas': typeof TrilhasRoute
+  '/atividades/$slug': typeof AtividadesSlugRoute
   '/atividades/': typeof AtividadesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +67,8 @@ export interface FileRoutesByTo {
   '/contato': typeof ContatoRoute
   '/seguranca': typeof SegurancaRoute
   '/sobre': typeof SobreRoute
+  '/trilhas': typeof TrilhasRoute
+  '/atividades/$slug': typeof AtividadesSlugRoute
   '/atividades': typeof AtividadesIndexRoute
 }
 export interface FileRoutesById {
@@ -61,14 +77,38 @@ export interface FileRoutesById {
   '/contato': typeof ContatoRoute
   '/seguranca': typeof SegurancaRoute
   '/sobre': typeof SobreRoute
+  '/trilhas': typeof TrilhasRoute
+  '/atividades/$slug': typeof AtividadesSlugRoute
   '/atividades/': typeof AtividadesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/contato' | '/seguranca' | '/sobre' | '/atividades/'
+  fullPaths:
+    | '/'
+    | '/contato'
+    | '/seguranca'
+    | '/sobre'
+    | '/trilhas'
+    | '/atividades/$slug'
+    | '/atividades/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/contato' | '/seguranca' | '/sobre' | '/atividades'
-  id: '__root__' | '/' | '/contato' | '/seguranca' | '/sobre' | '/atividades/'
+  to:
+    | '/'
+    | '/contato'
+    | '/seguranca'
+    | '/sobre'
+    | '/trilhas'
+    | '/atividades/$slug'
+    | '/atividades'
+  id:
+    | '__root__'
+    | '/'
+    | '/contato'
+    | '/seguranca'
+    | '/sobre'
+    | '/trilhas'
+    | '/atividades/$slug'
+    | '/atividades/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,6 +116,8 @@ export interface RootRouteChildren {
   ContatoRoute: typeof ContatoRoute
   SegurancaRoute: typeof SegurancaRoute
   SobreRoute: typeof SobreRoute
+  TrilhasRoute: typeof TrilhasRoute
+  AtividadesSlugRoute: typeof AtividadesSlugRoute
   AtividadesIndexRoute: typeof AtividadesIndexRoute
 }
 
@@ -109,11 +151,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SobreRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/trilhas': {
+      id: '/trilhas'
+      path: '/trilhas'
+      fullPath: '/trilhas'
+      preLoaderRoute: typeof TrilhasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/atividades/': {
       id: '/atividades/'
       path: '/atividades'
       fullPath: '/atividades/'
       preLoaderRoute: typeof AtividadesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atividades/$slug': {
+      id: '/atividades/$slug'
+      path: '/atividades/$slug'
+      fullPath: '/atividades/$slug'
+      preLoaderRoute: typeof AtividadesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -124,6 +180,8 @@ const rootRouteChildren: RootRouteChildren = {
   ContatoRoute: ContatoRoute,
   SegurancaRoute: SegurancaRoute,
   SobreRoute: SobreRoute,
+  TrilhasRoute: TrilhasRoute,
+  AtividadesSlugRoute: AtividadesSlugRoute,
   AtividadesIndexRoute: AtividadesIndexRoute,
 }
 export const routeTree = rootRouteImport
