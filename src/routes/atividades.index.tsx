@@ -18,7 +18,7 @@ export const Route = createFileRoute("/atividades/")({
       },
     ],
   }),
-  loader: () => useCases.listActivities({ featuredOnly: true } as never),
+  loader: () => useCases.listActivities.execute(),
   component: AtividadesPage,
 });
 
