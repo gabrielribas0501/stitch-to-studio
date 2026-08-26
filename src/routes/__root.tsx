@@ -77,11 +77,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "RioMonte Aventura" },
+      {
+        name: "description",
+        content: "Turismo de aventura com guias certificados: rafting, escalada, trilhas e montanhismo.",
+      },
+      { name: "author", content: "RioMonte Aventura" },
+      { property: "og:title", content: "RioMonte Aventura" },
+      {
+        property: "og:description",
+        content: "Turismo de aventura com guias certificados em Teresópolis.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
